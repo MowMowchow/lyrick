@@ -1,0 +1,22 @@
+** what might be preventing it from working is the files you deleted from
+the source folder (look at spotify auth github)
+
+- if the user is playing a song
+>> body_text
+item.artists.name[] <- list all of them (make sure to account for a lot)
+item.album.name 
+item.album.images[0]
+item.album.release_date
+item.name
+
+have home page that has a signin button that leads you to login
+change call back to actual song page after auth
+
+npm init
+npm install --save body-parser express cors react-router-dom cookie-parser genius-lyrics-api node-fetch querystring request
+
+
+steps:
+1) user logins in with original '/' url
+2) goes to callback url and redirects automatically
+3) is redirects to actual lyric component that calls fetch on 'np' with component did mount
