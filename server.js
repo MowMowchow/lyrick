@@ -14,8 +14,8 @@ var cors = require('cors');
 var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 var client_id = '440acaa5555749e0bf729df7a4541c65'; // Your client id
-var client_secret = '5f56c78ed2c94af1839ca4334753f09f'; // Your secret
-var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+var client_secret = '84188d695ed24aef820d2fdcb6517424'; // Your secret
+var redirect_uri = 'http://localhost:3001/callback'; // Your redirect uri
 
 let access_token, refresh_token2, currently_playing;
 
@@ -38,7 +38,7 @@ var stateKey = 'spotify_auth_state';
 
 var app = express();
 
-app.use(express.static(__dirname + '/public'))
+app.use('/client/src/Services/Auth_Service.js', express.static(__dirname + '/client/src/Services/Auth_Service.js'))
    .use(cors())
    .use(cookieParser());
 
@@ -106,11 +106,7 @@ app.get('/callback', function(req, res) {
           console.log(body);
         });
         // we can also pass the token to the browser to make requests from there
-        res.redirect('/#' +
-          querystring.stringify({
-            access_token: access_token,
-            refresh_token: refresh_token
-          }));
+        res.redirect('http://localhost:3000/#/lyrics');
       } else {
         res.redirect('/#' +
           querystring.stringify({
@@ -166,14 +162,32 @@ app.get('/np', function(req, response){
                 request({ url:"https://api.spotify.com/v1/me/player/recently-played?type=track&limit=1", headers: header }, function(error, res, body) {
 
                     var body_text = JSON.parse(body);
-                    var track = body_text.items[0].track;
-                    song_name = track.name;
-                    artist = track.artists[0].name;
-                    song_url = track.external_urls.spotify;
-                    response.json({ "song_name": song_name, "artist": artist, "song_url": song_url });
-                    currently_playing = { "song_name": song_name, "artist": artist, "song_url": song_url }
-                    console.log("currently playing", currently_playing);
-              
+                    // if (!body_text){
+                    //   song_name = body_text.item.name;
+                    //   artist = (body_text.item.artists)[0].name;
+                    //   song_url = body_text.item.external_urls.spotify;
+                    //   // response.json({ "song_name": song_name, "artist": artist, "song_url": song_url });
+                    //   // response.json(body_text.item);
+                    //   response.json({
+                    //     'artists': body_text.item.artists.map(x => x.name),
+                    //     'album_name': body_text.item.album.name,
+                    //     'album_cover': body_text.item.album.images[0],
+                    //     'release_date': body_text.item.album.release_date,
+                    //     'title': body_text.item.name
+                    //   })
+                    //   currently_playing = { "song_name": song_name, "artist": artist, "song_url": song_url }
+                    //   console.log("currently playing", currently_playing);
+
+                    // }else {
+
+                      var track = body_text.items[0].track;
+                      song_name = track.name;
+                      artist = track.artists[0].name;
+                      song_url = track.external_urls.spotify;
+                      response.json({ "song_name": song_name, "artist": artist, "song_url": song_url });
+                      currently_playing = { "song_name": song_name, "artist": artist, "song_url": song_url }
+                      console.log("currently playing", currently_playing);
+                    // }
                 });
             } else {
                 var body_text = JSON.parse(body);
@@ -202,5 +216,5 @@ app.get('/np', function(req, response){
 
 
 
-console.log('Listening on 8888');
-app.listen(8888);
+console.log('Listening on 3001');
+app.listen(3001);

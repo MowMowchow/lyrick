@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { HashRouter as Router, Switch, Route } from 'react-router-dom';
-import Base from './components/Base/Base';
+import Lyrics from './components/Lyrics/Lyrics';
 import Home from './components/Home/Home';
 import './App.css';
 
@@ -9,8 +9,9 @@ function App() {
     <div className="App">
       <Router>
         <Switch>
-          <Route path="/" exact component={Base}/>
-          <Route path="/Home" exact component={Home}/>
+          <Route path="/" exact component={Home}/>
+          
+          <Route path="/lyrics" exact component={Lyrics}/>
         </Switch>
       </Router>
     </div>

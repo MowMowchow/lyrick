@@ -4,7 +4,13 @@ function Home(){
 
   return(
     <div>
-      Home
+      <h1>HI</h1>
+      Homeasdfasdf
+
+      <a href="http://localhost:3001/login">
+        <button>Login</button>
+      </a>
+
     </div>
   )
 }

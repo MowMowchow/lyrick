@@ -1,0 +1,43 @@
+.lyrics-page-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  width: 100vw;
+}
+
+.lyrick-header-container{
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  width: 100%;
+}
+
+.lyrick-header{
+  font-size: 2.5rem;
+  font-family: nunito;
+}
+
+.content-container{
+
+}
+
+.song-info-container{
+
+}
+
+.update-btn{
+
+}
+
+.lyrics-container{
+
+}
+
+.lyrics-text-container{
+
+}
+
+.lyrics-text{
+
+}

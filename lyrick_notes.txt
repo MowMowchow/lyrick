@@ -20,3 +20,17 @@ steps:
 1) user logins in with original '/' url
 2) goes to callback url and redirects automatically
 3) is redirects to actual lyric component that calls fetch on 'np' with component did mount
+
+!! FOR CORS ISSUE: 
+1) Win + R
+2) chrome.exe --user-data-dir="C://Chrome dev session" --disable-web-security
+
+todo:
+ - make home page
+ - route homepage to login
+ - redirect login to lyrics page'
+ - takeout inline styling in index.html
+
+ - song info given at 3001/np
+ - have login reroute to lyrics
+
